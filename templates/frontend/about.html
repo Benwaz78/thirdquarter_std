@@ -1,0 +1,46 @@
+{% extends 'frontend/base.html' %}
+{% block title %}
+About
+{% endblock %}
+
+{% block content %}
+<!-- END OF SITE MENU -->
+<section id="sectionTitle">
+  <div class="pageTitle">
+    <h1>About Us</h1>
+  </div>
+</section>
+<!-- END OF PAGE TITLE -->
+<section id="content">
+  <div class="row">
+    <div class="col-sm-9 text-center" id="mainContent">
+      <div class="row">
+        <div class="col-sm-4">
+          <a href="detail.html">
+            <img src="images/mark.jpg" class="img-circle">
+          </a>
+          <h2>Mark Zuckerbarg</h2>
+          <a href="detail.html" class="btn btn-primary">Readmore</a>
+        </div>
+        <div class="col-sm-4">
+          <a href="detail.html">
+            <img src="images/jerry.jpg" class="img-circle">
+          </a>
+          <h2>Jerry Jang</h2>
+          <a href="detail.html" class="btn btn-primary">Readmore</a>
+        </div>
+        <div class="col-sm-4">
+          <a href="detail.html">
+            <img src="images/mayer.jpg" class="img-circle">
+          </a>
+          <h2>Marrissa Mayer</h2>
+          <a href="detail.html" class="btn btn-primary">Readmore</a>
+        </div>
+      </div>
+    </div>
+   
+      {% include 'frontend/sidebar.html' %}
+
+  </div>
+</section>
+{% endblock %}
