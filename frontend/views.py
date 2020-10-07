@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from frontend.models import Biography
 
 # Create your views here.
 
@@ -7,7 +8,8 @@ def index(request):
 
 
 def about(request):
-    return render(request, 'frontend/about.html')
+    profile = Biography.objects.all()
+    return render(request, 'frontend/about.html', {'bio':profile})
 
 def service(request):
     return render(request, 'frontend/services.html')
