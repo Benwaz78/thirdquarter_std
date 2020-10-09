@@ -1,10 +1,15 @@
 from django.shortcuts import render
+<<<<<<< HEAD
 from frontend.models import Biography, Category, Post
 from django.core.exceptions import ObjectDoesNotExist
+=======
+from django.http import HttpResponse
+>>>>>>> fc2b3107a1a59876ede3fd3535367180c289c8e5
 
 # Create your views here.
 
 def index(request):
+<<<<<<< HEAD
     abt = Biography.objects.all()[:3]
     pst = Post.objects.order_by('-created')[:3]
     context = {
@@ -36,3 +41,16 @@ def single_blog(request, post_id):
         return render(request, 'frontend/404.html')
     return render(request, 'frontend/single-blog.html', {'detail':single})
 
+=======
+    return render(request, 'frontend/index.html')
+
+def about(request):
+    return render(request, 'frontend/about.html')
+
+
+def services(request):
+    return render(request, 'frontend/services.html')
+
+def contact(request):
+    return render(request, 'frontend/contact.html')
+>>>>>>> fc2b3107a1a59876ede3fd3535367180c289c8e5

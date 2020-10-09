@@ -1,4 +1,5 @@
 from django.db import models
+<<<<<<< HEAD
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -42,3 +43,7 @@ class Biography(models.Model):
 
     def __str__(self):
         return self.bio_title
+=======
+
+# Create your models here.
+>>>>>>> fc2b3107a1a59876ede3fd3535367180c289c8e5
