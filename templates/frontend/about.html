@@ -23,7 +23,7 @@ About
                 <img src="{{ b.bio_img.url }}" class="img-circle">
               </a>
               <h2>{{ b.bio_title }}</h2>
-              <a href="detail.html" class="btn btn-primary">Readmore</a>
+              <a href="{% url 'frontend:detail_about' b.id %}" class="btn btn-primary">Readmore</a>
             </div>
           {% endfor %}
         {% endif %}
