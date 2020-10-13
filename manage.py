@@ -5,11 +5,7 @@ import sys
 
 
 def main():
-<<<<<<< HEAD
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_correction.settings')
-=======
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'student_website.settings')
->>>>>>> fc2b3107a1a59876ede3fd3535367180c289c8e5
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
