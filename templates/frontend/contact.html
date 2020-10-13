@@ -21,7 +21,7 @@ Contact Us
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="labelName">Name</label>
-                  <input type="text" name="name" id="labelUser" placeholder="Your Name" class="form-control">
+                  <input type="text" name="name" id="labelName" placeholder="Your Name" class="form-control">
                 </div>
               </div>
               <!-- END OF NAME -->
@@ -81,6 +81,7 @@ Contact Us
               </div>
               <input type="submit" name="send" value="Send" class="btn btn-primary">
             </div>
+            {% csrf_token %}
           </form>
         </div>
       </div>
