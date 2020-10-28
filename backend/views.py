@@ -4,16 +4,9 @@ from django.http import HttpResponse
 from backend.forms import *
 
 # Create your views here.
-def login(request):
-    return HttpResponse('<h1>Login Page</h1>')
-
 
 def register(request):
     return HttpResponse('<h1>Register Page</h1>')
-
-
-def dashboard(request):
-    return render(request, 'backend/index.html')
 
 def categroy_form(request):
     if request.method == 'POST':
@@ -35,3 +28,9 @@ def post_form(request):
         post_form = PostForm()
     return render(request, 'backend/add-post.html', {'post': post_form})
 
+
+def dashboard(request):
+    return render(request, 'backend/index.html')
+
+def login(request):
+    return HttpResponse('<h1>Login Page</h1>')
