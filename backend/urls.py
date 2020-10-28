@@ -10,7 +10,7 @@ urlpatterns = [
     path('add-category/', views.categroy_form, name='categroy_form'),
     path('add-post/', views.post_form, name='post_form')
 ]
-]
+
 
 
 
