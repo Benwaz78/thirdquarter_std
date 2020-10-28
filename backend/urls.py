@@ -4,7 +4,7 @@ from backend import views
 app_name='backend'
 
 urlpatterns = [
-    path('', views.login, name='login'),
+    path('', views.login_view, name='login_view'),
     path('backoffice/', views.dashboard, name='dashboard'),
     path('register-page/', views.register, name='register'),
     path('add-category/', views.categroy_form, name='categroy_form'),
