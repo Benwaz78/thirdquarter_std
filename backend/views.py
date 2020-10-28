@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
+
 
 from backend.forms import *
 
@@ -10,6 +12,7 @@ from backend.forms import *
 def register(request):
     return HttpResponse('<h1>Register Page</h1>')
 
+@login_required(login_url='/dashboard/')
 def categroy_form(request):
     if request.method == 'POST':
         cat_form = CategoryForm(request.POST)
@@ -19,7 +22,8 @@ def categroy_form(request):
     else:
         cat_form = CategoryForm()
     return render(request, 'backend/add-category.html', {'cat':cat_form})
-    
+
+@login_required(login_url='/dashboard/')
 def post_form(request):
     if request.method == 'POST':
         post_form = PostForm(request.POST, request.FILES)
@@ -30,7 +34,7 @@ def post_form(request):
         post_form = PostForm()
     return render(request, 'backend/add-post.html', {'post': post_form})
 
-
+@login_required(login_url='/dashboard/')
 def dashboard(request):
     return render(request, 'backend/index.html')
 
@@ -46,3 +50,12 @@ def login_view(request):
         else:
             messages.error(request, 'Username and Password do not match')
     return render(request, 'frontend/login.html')
+
+@login_required(login_url='/dashboard/')
+def confirm_logout(request):
+    return render(request, 'backend/confirm.html')
+
+@login_required(login_url='/dashboard/')
+def logout_view(request):
+    logout(request)
+    return redirect('backend:login_view')
