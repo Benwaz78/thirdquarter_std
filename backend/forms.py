@@ -19,7 +19,6 @@ class Register(UserCreationForm):
 
     def save(self, commit=True):
         user = super().save(commit=False)
-
         user.username = self.cleaned_data['username']
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
@@ -49,3 +48,22 @@ class CategoryForm(forms.ModelForm):
     class Meta():
         fields = '__all__'
         model = Category
+
+class PostForm(forms.ModelForm):
+    pst_title = forms.CharField(
+        widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Post Title'})
+    )
+    pst_content = forms.CharField(
+        widget=forms.Textarea(attrs={'class':'form-control'})
+    )
+    pst_image = forms.ImageField()
+    content = forms.ModelMultipleChoiceField(
+        queryset=Category.objects.all(), 
+        widget=forms.SelectMultiple(attrs={'class': 'form-control'}))
+    user = forms.ModelChoiceField(
+        queryset=User.objects.all(), empty_label='Please Choose', 
+        widget=forms.Select(attrs={'class': 'form-control'}))
+
+    class Meta():
+        exclude = ['created', ]
+        model = Post
