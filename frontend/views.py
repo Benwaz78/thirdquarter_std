@@ -37,5 +37,9 @@ def single_blog(request, post_id):
         return render(request, 'frontend/404.html')
     return render(request, 'frontend/single-blog.html', {'detail':single})
 
+def login_view(request):
+    return render(request, 'frontend/login.html')
+
 def contact(request):
     return render(request, 'frontend/contact.html')
+
