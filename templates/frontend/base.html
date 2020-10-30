@@ -61,6 +61,7 @@
                 {% url 'frontend:blog' as Blog %}
                 {% url 'frontend:contact' as Contact %}
                 {% url 'frontend:login_view' as Login %}
+                {% url 'backend:register' as Register %}
               <ul class="nav navbar-nav">
                 <li {% if request.path == Home %} class="active" {% endif %}><a href="{% url 'index' %}">Home</a></li>
                 <li {% if request.path == About %} class="active" {% endif %}><a href="{% url 'frontend:about' %}">About</a></li>
@@ -69,6 +70,7 @@
                 <li {% if request.path == Service %} class="active" {% endif %}><a href="{% url 'frontend:service' %}">Services</a></li>
                 <li {% if request.path == Login %} class="active" {% endif %}><a href="{% url 'frontend:login_view' %}">Login</a></li>
                 <li {% if request.path == Contact %} class="active" {% endif %}><a href="{% url 'frontend:contact' %}">Contact</a></li>
+                <li {% if request.path == Register %} class="active" {% endif %}><a href="{% url 'backend:register' %}">Register</a></li>
               </ul>
             </div>
           </nav>

@@ -1,0 +1,32 @@
+{% extends 'frontend/base.html' %}
+{% block title %}
+Register
+{% endblock %}
+
+{% block content %}
+<!-- END OF SITE MENU -->
+<section id="sectionTitle">
+  <div class="pageTitle">
+    <h1>Register</h1>
+  </div>
+</section>
+<!-- END OF PAGE TITLE -->
+<section id="content">
+  <div class="row">
+    <div class="col-sm-9 text-center" id="mainContent">
+        
+      <div class="row">
+        <div class="col-sm-12">
+          <form class="form" method="post">
+            {% include 'backend/form-snippet.html' with form=reg %}
+            <input type="submit" class="btn btn-primary" value="Reister">
+            {% csrf_token %}
+          </form>
+        </div>
+      </div>
+    </div>
+    {% include 'frontend/sidebar.html' %}
+    <!-- END OF ASIDE CONTENT -->
+  </div>
+</section>
+{% endblock %}

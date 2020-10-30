@@ -9,4 +9,10 @@ Add Category
 
 <h1>Add Category</h1>
 
+
+
+<form method="post">
+    {% include 'backend/form-snippet.html' with form=cat %}
+     <input type="submit" class="btn btn-primary" value="Add Category">
+</form>
 {% endblock %}

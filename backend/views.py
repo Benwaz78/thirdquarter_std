@@ -1,12 +1,25 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+
+from frontend.models import *
+
 from backend.forms import *
 
+from django.contrib.auth.models import User
+
+from django.contrib import messages
 # Create your views here.
 
 def register(request):
-    return HttpResponse('<h1>Register Page</h1>')
+    if request.method == 'POST':
+        register = Register(request.POST)
+        if register.is_valid():
+            register.save()
+            messages.success(request, 'User have been registered')
+    else:
+        register = Register()
+    return render(request, 'frontend/register.html', {'reg':register})
 
 def categroy_form(request):
     if request.method == 'POST':
@@ -27,6 +40,15 @@ def post_form(request):
     else:
         post_form = PostForm()
     return render(request, 'backend/add-post.html', {'post': post_form})
+
+
+def list_users(request):
+    show_user = User.objects.all().order_by('last_name')
+    return render(request, 'backend/view-users.html', {'users':show_user})
+
+def view_categories(request):
+    show_cat = Category.objects.all()
+    return render(request, 'backend/view-categories.html', {'cat':show_cat})
 
 
 def dashboard(request):
