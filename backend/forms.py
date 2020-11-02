@@ -75,12 +75,23 @@ class PostForm(forms.ModelForm):
     category = forms.ModelMultipleChoiceField(
         queryset=Category.objects.all(), 
         widget=forms.SelectMultiple(attrs={'class': 'form-control'}))
-    user = forms.ModelChoiceField(
-        queryset=User.objects.all(), empty_label='Please Choose', 
-        widget=forms.Select(attrs={'class': 'form-control'}))
     catch_bot = forms.CharField(required=False, 
                 widget=forms.HiddenInput, validators=[validators.MaxLengthValidator(0)])
 
     class Meta():
-        exclude = ['created', ]
+        exclude = ['created', 'user' ]
+        model = Post
+
+class FilterForm(forms.ModelForm):
+    user = forms.ModelChoiceField(
+        queryset=User.objects.all(), 
+        widget=forms.Select(attrs={'class': 'form-control'}))
+    category = forms.ModelMultipleChoiceField(
+        queryset=Category.objects.all(), 
+        widget=forms.SelectMultiple(attrs={'class': 'form-control'}))
+    catch_bot = forms.CharField(required=False, 
+                widget=forms.HiddenInput, validators=[validators.MaxLengthValidator(0)])
+
+    class Meta():
+        fields = ['user', 'category' ]
         model = Post

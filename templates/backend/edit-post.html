@@ -1,0 +1,16 @@
+{% extends 'backend/base.html' %}
+{% load static %}
+
+{% block title %}
+Edit Post
+{% endblock %}
+
+{% block  content %}
+
+<h1>Edit Post</h1>
+<form method="POST" enctype="multipart/form-data">
+    {% include 'backend/form-snippet.html' with form=edit %}
+    <input type="submit" class="btn btn-primary" value="Edit Post">
+</form>
+
+{% endblock %}

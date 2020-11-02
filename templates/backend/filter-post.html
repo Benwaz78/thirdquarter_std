@@ -1,0 +1,78 @@
+{% extends 'backend/base.html' %}
+{% load static %}
+
+{% block title %}
+Views Users
+{% endblock %}
+
+{% block  content %}
+
+<h1>View Categories</h1>
+<form method='GET' class="form-inline">
+    {{ post }}
+    {% csrf_token %}
+    <input type="submit" class="btn btn-primary" value="Filter">
+</form>
+<table class="table table-bordered">
+    <tr>
+        <th>Post Title</th>
+        <th>Post Image</th>
+        <th>User</th>
+        <th>Content</th>
+        <th>Created</th>
+        <th colspan="3">Action</th>
+    </tr>
+    {% if query %}
+        {% for post in query %}
+            <tr>
+                <td>{{ post.pst_title }}</td>
+                <td><img src="{{ post.pst_image.url }}" width="90" height="90" alt=""></td>
+                <td>
+                    {{ post.user.username }}
+                </td>
+                <td>
+                    {{ post.content|truncatewords:20 }}
+                </td>
+                <td>
+                    {{ post.created }}
+                </td>
+                <td>
+                    <a href="#">View</a>
+                </td>
+                <td>
+                    <a href="{% url 'backend:edit_post' post.id %}">Edit</a>
+                </td>
+                <td>
+                    <a href="{% url 'backend:delete_post' post.id %}">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    {% else %}
+        {% for post in filter %}
+        <tr>
+            <td>{{ post.pst_title }}</td>
+            <td><img src="{{ post.pst_image.url }}" width="90" height="90" alt=""></td>
+            <td>
+                {{ post.user.username }}
+            </td>
+            <td>
+                {{ post.content|truncatewords:20 }}
+            </td>
+            <td>
+                {{ post.created }}
+            </td>
+            <td>
+                <a href="#">View</a>
+            </td>
+            <td>
+                <a href="{% url 'backend:edit_post' post.id %}">Edit</a>
+            </td>
+            <td>
+                <a href="{% url 'backend:delete_post' post.id %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    {% endif %}
+</table>
+
+{% endblock %}
