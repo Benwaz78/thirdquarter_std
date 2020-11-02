@@ -68,7 +68,7 @@
                 <li><a href="users.html">Users</a></li>
                 <li {% if request.path == Blog %} class="active" {% endif %}><a href="{% url 'frontend:blog' %}">Blog</a></li>
                 <li {% if request.path == Service %} class="active" {% endif %}><a href="{% url 'frontend:service' %}">Services</a></li>
-                <li {% if request.path == Login %} class="active" {% endif %}><a href="{% url 'frontend:login_view' %}">Login</a></li>
+                <li {% if request.path == Login %} class="active" {% endif %}><a href="{% url 'backend:login_view' %}">Login</a></li>
                 <li {% if request.path == Contact %} class="active" {% endif %}><a href="{% url 'frontend:contact' %}">Contact</a></li>
                 <li {% if request.path == Register %} class="active" {% endif %}><a href="{% url 'backend:register' %}">Register</a></li>
               </ul>
