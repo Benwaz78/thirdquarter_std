@@ -1,0 +1,24 @@
+{% load static %}
+<div class="col-sm-2 bg-dark h-100 pt-2 bg-warning" id="sideBar">
+    <img src="{% static 'backend/images/logo.png' %}" alt="" class="img-fluid">
+    <hr class="bg-white">
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link active text-white" href="#">Add User</a>
+        </li>
+       
+
+    </ul>
+    
+    <hr class="bg-white">
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link active text-white" href="{% url 'backend:add_post' %}">Add Post</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="#">View Post</a>
+        </li>
+
+    </ul>
+    
+</div>
