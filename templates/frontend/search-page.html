@@ -1,0 +1,32 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+{% block title %}
+Search Site
+{% endblock %}
+
+{% block content %}
+<section id="sectionTitle">
+  <div class="pageTitle">
+    <h1>Search this site</h1>
+  </div>
+</section>
+  <section id="content">
+    <div class="row">
+      <div class="col-sm-9 text-center" id="detailContent">
+        <form action="{% url 'backend:search' %}" method="GET">
+            <div class="form-group">
+                <label>Search Site</label>
+                <input type="text" id="search" placeholder="Search Site" name="search" class="form-control">
+            </div>
+            {% csrf_token %}
+            <input type="submit" value="Seach"  class="btn btn-primary">
+        </form>
+        <ul id="search-results">
+        </ul>
+  
+      </div>
+     {% include 'frontend/sidebar.html' %}
+      <!-- END OF ASIDE CONTENT -->
+    </div>
+  </section>
+{% endblock %}

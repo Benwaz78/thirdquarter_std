@@ -83,12 +83,14 @@ class PostForm(forms.ModelForm):
         model = Post
 
 class FilterForm(forms.ModelForm):
+    initial_values = ['Select','Please Select']
     user = forms.ModelChoiceField(
         queryset=User.objects.all(), 
         widget=forms.Select(attrs={'class': 'form-control'}))
     category = forms.ModelMultipleChoiceField(
+        initial = initial_values,
         queryset=Category.objects.all(), 
-        widget=forms.SelectMultiple(attrs={'class': 'form-control'}))
+        widget=forms.SelectMultiple(attrs={'class': 'form-control js-example-disabled-results'}))
     catch_bot = forms.CharField(required=False, 
                 widget=forms.HiddenInput, validators=[validators.MaxLengthValidator(0)])
 

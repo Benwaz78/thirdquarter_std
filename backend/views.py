@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
+import json
 
 
 from frontend.models import *
@@ -71,28 +72,18 @@ def delete_post(request, post_id):
 @login_required(login_url='/dashboard/')
 def filter_post(request):
     query = Post.objects.all()
+    post = FilterForm(request.GET)
     if request.method == 'GET':
-        post = FilterForm(request.GET)
         if post.is_valid():
-            user = post.cleaned_data.get('username')
-            category = post.cleaned_data.get('category')
-            query_filter = Post.objects.filter(user__username=user, category__cat_name=category)
-            return render(request, 'backend/filter-post.html', {'filter':query_filter})
-    else:
-        post = FilterForm()
-    return render(request, 'backend/filter-post.html', {'query':query, 'post':post})
+            user=post.cleaned_data.get('user')
+            category=post.cleaned_data.get('category')
+            if user and category:
+                query_filter = Post.objects.filter(user__username=user, category__cat_name=category)            
+    return render(request, 'backend/filter-post.html', {'post':post, 'query':query})
     
-    
-
-
-
-
-
-
-
 def view_post_byuser(request):
     user_post = Post.objects.filter(user=request.user)
-    return render(request, 'backend/post-byuser.html', {'user_post':user_post})
+    return render(request, 'backend/post-byuser.html', {'post':user_post})
 
 @login_required(login_url='/dashboard/')
 def list_users(request):
@@ -134,3 +125,22 @@ def logout_view(request):
 @login_required(login_url='/dashboard/')
 def view_profile(request):
     return render(request, 'backend/view-profile.html')
+
+
+def search_page(request):
+    return render(request, 'frontend/search-page.html')
+
+
+
+def search(request):
+    if request.method=='GET':
+        q = request.GET.get('search')
+        if q is not None:
+            q = request.GET.get('search')
+            search_qs = Post.objects.filter(pst_title__contains=q)
+            print(search_qs)
+        else:
+            search_qs = []
+        return render(request, 'frontend/search-result.html', {'data':search_qs})
+    
+    

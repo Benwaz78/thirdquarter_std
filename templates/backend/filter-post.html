@@ -9,8 +9,7 @@ Views Users
 
 <h1>View Categories</h1>
 <form method='GET' class="form-inline">
-    {{ post }}
-    {% csrf_token %}
+    {% include 'backend/form-snippet.html' with form=post %}
     <input type="submit" class="btn btn-primary" value="Filter">
 </form>
 <table class="table table-bordered">

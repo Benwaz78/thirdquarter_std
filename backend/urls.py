@@ -16,7 +16,10 @@ urlpatterns = [
     path('view-post-byuser/', views.view_post_byuser, name='view_post_byuser'),
     path('list-users/', views.list_users, name='list_users'),
     path('view-categories/', views.view_categories, name='view_categories'),
+    path('filter-post/', views.filter_post, name='filter_post'),
     path('view-profile/', views.view_profile, name='view_profile'),
+    path('search-page/', views.search_page, name='search_page'),
+    path('search-result/', views.search, name='search'),
 ]
 
 

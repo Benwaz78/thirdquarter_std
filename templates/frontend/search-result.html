@@ -1,0 +1,11 @@
+{% if data > 0 %}
+<ul id="search-results">
+    {% for status in data %}
+    <li>
+        <p>{{status.pst_title}}</p>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No status found.</p>
+{% endif %}
