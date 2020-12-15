@@ -46,31 +46,6 @@ Views Users
                 </td>
             </tr>
         {% endfor %}
-    {% else %}
-        {% for post in filter %}
-        <tr>
-            <td>{{ post.pst_title }}</td>
-            <td><img src="{{ post.pst_image.url }}" width="90" height="90" alt=""></td>
-            <td>
-                {{ post.user.username }}
-            </td>
-            <td>
-                {{ post.content|truncatewords:20 }}
-            </td>
-            <td>
-                {{ post.created }}
-            </td>
-            <td>
-                <a href="#">View</a>
-            </td>
-            <td>
-                <a href="{% url 'backend:edit_post' post.id %}">Edit</a>
-            </td>
-            <td>
-                <a href="{% url 'backend:delete_post' post.id %}">Delete</a>
-            </td>
-        </tr>
-        {% endfor %}
     {% endif %}
 </table>
 

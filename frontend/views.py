@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from frontend.models import Biography, Category, Post
+from backend.forms import CommentForm
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
 
@@ -30,12 +31,18 @@ def blog(request):
     all_post = Post.objects.order_by('-created')
     return render(request, 'frontend/blog.html', {'post':all_post})
 
-def single_blog(request, post_id):
-    try:
-        single = Post.objects.get(id=post_id)
-    except Exception:
-        return render(request, 'frontend/404.html')
-    return render(request, 'frontend/single-blog.html', {'detail':single})
+def single_blog(request, pk):
+    single = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = single
+            comment.save()
+            return redirect('frontend:single_blog', pk=single.pk)
+    else:
+        form = CommentForm()
+    return render(request, 'frontend/single-blog.html', {'detail':single, 'form':form})
 
 
 def contact(request):

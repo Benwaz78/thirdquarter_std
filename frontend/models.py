@@ -28,6 +28,15 @@ class Post(models.Model):
     def img_url(self):
         if self.pst_image:
             return self.pst_image.url
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    author = models.CharField(max_length=200)
+    text = models.TextField()
+    approved_comment = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.author
         
 
 

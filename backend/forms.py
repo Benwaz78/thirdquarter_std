@@ -1,5 +1,5 @@
 from django import forms
-from frontend.models import Category, Post
+from frontend.models import Category, Post, Comment
 from django.contrib.auth.models import User
 from django.core import validators
 
@@ -82,13 +82,22 @@ class PostForm(forms.ModelForm):
         exclude = ['created', 'user' ]
         model = Post
 
+class CommentForm(forms.ModelForm):
+
+    class Meta:
+        model = Comment
+        fields = ('author', 'text',)
+
+        widgets = {
+            'author': forms.TextInput(attrs={'class': 'form-control'}),
+            'text': forms.Textarea(attrs={'class': 'form-control'}),
+        }
+
 class FilterForm(forms.ModelForm):
-    initial_values = ['Select','Please Select']
     user = forms.ModelChoiceField(
         queryset=User.objects.all(), 
         widget=forms.Select(attrs={'class': 'form-control'}))
     category = forms.ModelMultipleChoiceField(
-        initial = initial_values,
         queryset=Category.objects.all(), 
         widget=forms.SelectMultiple(attrs={'class': 'form-control js-example-disabled-results'}))
     catch_bot = forms.CharField(required=False, 
