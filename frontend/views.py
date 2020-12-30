@@ -48,3 +48,9 @@ def single_blog(request, pk):
 def contact(request):
     return render(request, 'frontend/contact.html')
 
+def sidebar_search(request):
+    if request.method=='GET':
+        q = request.GET.get('search')
+        search_qs = Post.objects.all().filter(pst_title=q)
+        return render(request, 'frontend/search-result.html', {'data':search_qs})
+    # return render(request, 'frontend/search-result.html', {'data':search_qs})

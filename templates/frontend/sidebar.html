@@ -1,7 +1,7 @@
 <aside class="col-sm-3" id="sideBar">
     <div class="widget">
         <h3>Search Form</h3>
-        <form action="#" method="GET">
+        <form action="{% url 'frontend:sidebar_search' %}" method="GET">
             <div class="form-group">
                 <input type="text" id="search" name="search" class="form-control" placeholder="Site Search">
             </div>

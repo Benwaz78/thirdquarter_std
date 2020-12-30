@@ -76,6 +76,7 @@ def filter_post(request):
     if post.is_valid():
         user=post.cleaned_data.get('user')
         category=post.cleaned_data.get('category')
+        print('Data:', user, category)
         if user and category:
             queryset = queryset.filter(user__username=user, category__cat_name=category)
     return render(request, 'backend/filter-post.html', {'query':queryset, 'post':post})
@@ -128,6 +129,8 @@ def view_profile(request):
 
 def search_page(request):
     return render(request, 'frontend/search-page.html')
+
+
 
 
 
